@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态壁纸主页</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#" class="active">首页</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="搜索壁纸...">
+            <button id="search-button">搜索</button> 
+
+        </div>
+    </header>
+
+    <main>
+        <nav class="category-nav">
+            <ul>
+                <!-- Categories will be loaded dynamically here -->
+            </ul>
+            <div class="filter-options">
+            </div>
+        </nav>
+
+        <section class="wallpaper-grid">
+            <!-- Wallpaper items will be dynamically loaded here -->
+        </section>
+        <div id="pagination-controls" style="text-align: center; margin-top: 20px;">
+            <!-- Pagination controls will be dynamically loaded here -->
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
