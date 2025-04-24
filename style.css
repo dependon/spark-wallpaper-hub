@@ -185,3 +185,40 @@ main {
 .download-button:hover {
     background-color: #45a049;
 }
+
+/* Pagination Controls Styling */
+#pagination-controls {
+    text-align: center; /* Center inline elements like buttons and span */
+    margin-top: 30px; /* Add space above the controls */
+    padding: 15px 0;
+    background-color: #fff; /* Optional: Add background */
+    border-top: 1px solid #ddd; /* Optional: Add separator */
+    display: flex; /* Use flexbox for better alignment */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Align items vertically */
+}
+
+#pagination-controls button {
+    padding: 8px 15px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 5px; /* Add horizontal margin between buttons/elements */
+}
+
+#pagination-controls button:hover {
+    background-color: #ddd;
+}
+
+#pagination-controls input[type="number"] {
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 60px; /* Adjust width as needed */
+    text-align: center;
+}
+
+#pagination-controls span {
+    margin: 0 10px; /* Adjust spacing for the page info text */
+}

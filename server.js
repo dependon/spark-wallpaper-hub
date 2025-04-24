@@ -61,7 +61,7 @@ app.get('/api/wallpapers/:name', (req, res) => {
 // API endpoint to get wallpapers with pagination, filtering, and search
 app.get('/api/wallpapers', (req, res) => {
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 50; // Default limit to 50
+    const limit = parseInt(req.query.limit) || 20; // Default limit to 20
     const offset = (page - 1) * limit;
 
     const category = req.query.category;

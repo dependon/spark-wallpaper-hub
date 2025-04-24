@@ -59,7 +59,7 @@ paginationContainer.id = 'pagination-controls';
 document.body.appendChild(paginationContainer); // Append it to the body or a specific location
 
 let currentPage = 1;
-const limit = 50;
+const limit = 20; // 每页显示数量改为20
 let currentCategory = '全部'; // Default category
 let currentSearch = ''; // Default search term
 
@@ -141,8 +141,8 @@ function fetchWallpapers(page = 1, category = currentCategory, search = currentS
             const title = document.createElement('p');
             title.textContent = wallpaper.name || '无标题'; // Use name as title, fallback
 
-            // 添加双击事件监听器
-            item.addEventListener('dblclick', () => {
+            // 添加单击事件监听器
+            item.addEventListener('click', () => {
                 fetch(`/api/wallpapers/${encodeURIComponent(wallpaper.name)}`)
                     .then(response => {
                         if (!response.ok) {
@@ -204,7 +204,7 @@ function fetchWallpapers(page = 1, category = currentCategory, search = currentS
             paginationContainer.appendChild(prevButton);
         }
 
-        // Page Numbers (simplified example: show current page and total pages)
+        // Page Info Span
         const pageInfo = document.createElement('span');
         pageInfo.textContent = ` 第 ${currentPage} 页 / 共 ${totalPages} 页 `;
         pageInfo.style.margin = '0 10px'; // Add some spacing
@@ -217,6 +217,40 @@ function fetchWallpapers(page = 1, category = currentCategory, search = currentS
             nextButton.onclick = () => fetchWallpapers(currentPage + 1);
             paginationContainer.appendChild(nextButton);
         }
+
+        // Manual Page Input
+        const pageInputContainer = document.createElement('span');
+        pageInputContainer.style.marginLeft = '20px'; // Add some space
+
+        const pageInput = document.createElement('input');
+        pageInput.type = 'number';
+        pageInput.min = '1';
+        pageInput.max = totalPages;
+        pageInput.value = currentPage;
+        pageInput.style.width = '50px';
+        pageInput.style.marginRight = '5px';
+        pageInput.setAttribute('aria-label', '跳转到页码');
+
+        const goToButton = document.createElement('button');
+        goToButton.textContent = '跳转';
+        goToButton.onclick = () => {
+            const pageNum = parseInt(pageInput.value);
+            if (pageNum >= 1 && pageNum <= totalPages) {
+                fetchWallpapers(pageNum);
+            } else {
+                alert(`请输入 1 到 ${totalPages} 之间的页码`);
+            }
+        };
+        // Add keydown listener for Enter key
+        pageInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                 goToButton.click(); // Trigger button click on Enter
+            }
+        });
+
+        pageInputContainer.appendChild(pageInput);
+        pageInputContainer.appendChild(goToButton);
+        paginationContainer.appendChild(pageInputContainer);
     }
 
     // Function to fetch and display categories
